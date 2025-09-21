@@ -1,6 +1,7 @@
 FROM oven/bun:1
 
-WORKDIR /usr/src/app
+WORKDIR /app
+
 
 COPY ./packages ./packages
 COPY ./bun.lock ./bun.lock
@@ -10,8 +11,13 @@ COPY ./turbo.json ./turbo.json
 
 COPY ./apps/websocket ./apps/websocket
 
+RUN npm install
+
+COPY . .
+
 RUN bun install
-RUN bun run db:generate
+
+RUN BUN run db:generate
 
 EXPOSE 8081
 
