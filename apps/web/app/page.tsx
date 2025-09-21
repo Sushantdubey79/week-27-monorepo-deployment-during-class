@@ -1,6 +1,8 @@
 import { prismaClient } from "db/client";
 
 export default async function Home() {
+
+  const a = 0;
   const users = await prismaClient.user.findMany();
   return (
     <div>
